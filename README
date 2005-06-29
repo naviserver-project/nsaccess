@@ -13,7 +13,7 @@ To compile this driver, you'll need to have libwrap.
 
 Usage
 
-    ns_access check daemonname client_ippaddr
+    ns_access check daemonname client_ippaddr ?username?
 
        verifies daemon name with connection from ipaddr agains host_access
        database. Returns 0 if access denied

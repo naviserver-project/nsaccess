@@ -159,10 +159,12 @@ AccessObjCmd(ClientData arg, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]
     switch(cmd) {
      case cmdCheck:
         if (objc != 4) {
-            Tcl_WrongNumArgs(interp, 2, objv, "daemon_name client_ipaddr");
+            Tcl_WrongNumArgs(interp, 2, objv, "daemon_name client_ipaddr ?client_username?");
             return TCL_ERROR;
         }
-        rc = hosts_ctl(Tcl_GetString(objv[2]), STRING_UNKNOWN, Tcl_GetString(objv[3]), STRING_UNKNOWN);
+        rc = hosts_ctl(Tcl_GetString(objv[2]), STRING_UNKNOWN, 
+                       Tcl_GetString(objv[3]), 
+                       objc > 4 ? Tcl_GetString(objv[4]) : STRING_UNKNOWN);
         Tcl_SetObjResult(interp,Tcl_NewIntObj(rc));
         break;
 
