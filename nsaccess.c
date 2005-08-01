@@ -75,12 +75,10 @@ Ns_ModuleInit(char *server, char *module)
     char   *path, *file;
 
     path = Ns_ConfigGetPath(server,module,NULL); 
-    if((file = Ns_ConfigGet(path,"allow_file"))) hosts_allow_table = ns_strdup(file);
-    if((file = Ns_ConfigGet(path,"deny_file"))) hosts_deny_table = ns_strdup(file);
+    if((file = Ns_ConfigGetValue(path,"allow_file"))) hosts_allow_table = ns_strdup(file);
+    if((file = Ns_ConfigGetValue(path,"deny_file"))) hosts_deny_table = ns_strdup(file);
 
-    if (Ns_TclInitInterps(server, AddCmds, 0) != NS_OK) {
-        return NS_ERROR;
-    }
+    Ns_TclRegisterTrace(server, AddCmds, 0, NS_TCL_TRACE_CREATE);
 
     return NS_OK;
 }
