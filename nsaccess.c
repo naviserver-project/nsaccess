@@ -9,13 +9,6 @@
  * the License for the specific language governing rights and limitations
  * under the License.
  *
- * The Original Code is AOLserver Code and related documentation
- * distributed by AOL.
- * 
- * The Initial Developer of the Original Code is America Online,
- * Inc. Portions created by AOL are Copyright (C) 1999 America Online,
- * Inc. All Rights Reserved.
- *
  * Alternatively, the contents of this file may be used under the terms
  * of the GNU General Public License (the "GPL"), in which case the
  * provisions of GPL are applicable instead of those above.  If you wish
@@ -74,7 +67,7 @@ Ns_ModuleInit(char *server, char *module)
 {
     char   *path, *file;
 
-    path = Ns_ConfigGetPath(server,module,NULL); 
+    path = Ns_ConfigGetPath(server,module,NULL);
     if((file = Ns_ConfigGetValue(path,"allow_file"))) hosts_allow_table = ns_strdup(file);
     if((file = Ns_ConfigGetValue(path,"deny_file"))) hosts_deny_table = ns_strdup(file);
 
@@ -137,7 +130,7 @@ AccessObjCmd(ClientData arg, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]
         cmdSetAllowSeverity,
         cmdSetDenySeverity
     };
-        
+
     static const char *sCmd[] = {
         "check",
         "setallowfile",
@@ -160,8 +153,8 @@ AccessObjCmd(ClientData arg, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]
             Tcl_WrongNumArgs(interp, 2, objv, "daemon_name client_ipaddr ?client_username?");
             return TCL_ERROR;
         }
-        rc = hosts_ctl(Tcl_GetString(objv[2]), STRING_UNKNOWN, 
-                       Tcl_GetString(objv[3]), 
+        rc = hosts_ctl(Tcl_GetString(objv[2]), STRING_UNKNOWN,
+                       Tcl_GetString(objv[3]),
                        objc > 4 ? Tcl_GetString(objv[4]) : STRING_UNKNOWN);
         Tcl_SetObjResult(interp,Tcl_NewIntObj(rc));
         break;
