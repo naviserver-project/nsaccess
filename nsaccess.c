@@ -29,9 +29,6 @@
 
 #include "tcpd.h"
 
-NS_RCSID("$Header$");
-
-
 NS_EXPORT int Ns_ModuleVersion = 1;
 
 
@@ -40,7 +37,7 @@ NS_EXPORT int Ns_ModuleVersion = 1;
  */
 
 static Tcl_ObjCmdProc AccessObjCmd;
-static int AddCmds(Tcl_Interp *interp, void *arg);
+static Ns_TclTraceProc AddCmds;
 
 
 /*
@@ -94,7 +91,7 @@ Ns_ModuleInit(char *server, char *module)
  */
 
 static int
-AddCmds(Tcl_Interp *interp, void *arg)
+AddCmds(Tcl_Interp *interp, const void *arg)
 {
     Tcl_CreateObjCommand(interp, "ns_access", AccessObjCmd, arg, NULL);
 

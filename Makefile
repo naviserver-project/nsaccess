@@ -10,7 +10,7 @@ MOD      =  nsaccess.so
 #
 # Objects to build.
 #
-OBJS     = nsaccess.o
+MODOBJS     = nsaccess.o
 
 MODLIBS	 = -lwrap
 
