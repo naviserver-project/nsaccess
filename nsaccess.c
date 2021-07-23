@@ -59,7 +59,7 @@ static Ns_TclTraceProc AddCmds;
  *----------------------------------------------------------------------
  */
 
-int
+Ns_ReturnCode
 Ns_ModuleInit(char *server, char *module)
 {
     char   *path, *file;
@@ -90,7 +90,7 @@ Ns_ModuleInit(char *server, char *module)
  *----------------------------------------------------------------------
  */
 
-static int
+static Ns_ReturnCode
 AddCmds(Tcl_Interp *interp, const void *arg)
 {
     Tcl_CreateObjCommand(interp, "ns_access", AccessObjCmd, arg, NULL);
